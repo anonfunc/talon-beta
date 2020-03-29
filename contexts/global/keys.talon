@@ -5,3 +5,5 @@
 <user.modifier> <text.alphabet>: key("{modifier}-{alphabet}")
 <user.modifier> <user.named_key>: key("{modifier}-{named_key}")
 <user.modifier> <digits>: key("{modifier}-{digits}")
+
+go <user.direction>: key("{direction}")

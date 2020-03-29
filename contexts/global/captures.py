@@ -8,7 +8,7 @@ from typing import Dict, Any
 
 from talon import Context
 
-from ... import keys, numbers, wrapper
+from ... import keys, numbers, wrapper, formatting
 
 ctx = Context()
 
@@ -52,3 +52,11 @@ ctx.lists["self.named_key"] = keys.named_keys
 @ctx.capture(rule="{self.named_key}")
 def named_key(m):
     return m.named_key
+
+
+ctx.lists["self.direction"] = keys.arrows
+
+
+@ctx.capture(rule="{self.direction}")
+def direction(m):
+    return m.direction

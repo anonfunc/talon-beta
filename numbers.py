@@ -10,11 +10,12 @@ numeral_map.update(
     dict(zip("twenty thirty forty fifty sixty seventy eighty ninety".split(), range(20, 101, 10))))
 small_numeral_map = {**numeral_map}
 
-factors = {"hundred": 100, "thousand": 1000}
+factors = {"hundred": 100, "oh": 100, "thousand": 1000}
 numeral_map.update(factors)
+numeral_map.update({"and": None})
 
 
-def words_to_numerals(words) -> str:
+def words_to_numerals(words: list) -> str:
     """Convert a list of words into a numeric representation.
 
     Based on https://stackoverflow.com/questions/70161/how-to-read-values-from-numbers-written-as-words
@@ -23,6 +24,20 @@ def words_to_numerals(words) -> str:
     >>> words_to_numerals(["one", "ten"])
     '110'
 
+    >>> words_to_numerals(["one", "hundred"])
+    '100'
+
+    >>> words_to_numerals(["one", "hundred", "and", "one"])
+    '101'
+
+    >>> words_to_numerals(["two", "oh", "one"])
+    '201'
+
+    >>> words_to_numerals(["ten", "twenty", "four"])
+    '1024'
+
+    >>> words_to_numerals(["one", "thousand", "twenty", "four"])
+    '1024'
     """
     # print(words)
     words = [w.lower() for w in words]
