@@ -1,4 +1,5 @@
 copy bundle: user.copy_bundle()
+show current engine: app.notify(user.current_engine())
 
 literal <phrase>++: insert(phrase)
 say <phrase> [over]: dictate.natural(phrase)

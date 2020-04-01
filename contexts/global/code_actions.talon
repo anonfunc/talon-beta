@@ -4,7 +4,7 @@
 ###
 
 # Trigger code autocomplete
-complete : code.complete()
+# complete : code.complete()
 # Extend selection to end of current scope
 # XXX : code.extend_scope_end()
 # Extend selection to start of first inner scope
@@ -20,7 +20,7 @@ complete : code.complete()
 # Return the active programming language
 # XXX : code.language() -> str
 # Rename selection to <name>
-rename as <phrase> : code.rename(phrase)
+# rename as <phrase> : code.rename(phrase)
 # Move cursor to end of current scope
 # XXX : code.scope_end()
 # Move cursor to start of first inner scope
@@ -36,4 +36,4 @@ rename as <phrase> : code.rename(phrase)
 # Select scope under cursor
 # XXX : code.select_scope()
 # Toggle comments on the current line(s)
-comment line: # XXX : code.toggle_comment()
+# comment line: # XXX : code.toggle_comment()

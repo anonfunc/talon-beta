@@ -79,13 +79,13 @@ def set_extend(*commands):
 #             send_psi(path, cmd, index)
 #         if prefix:
 #             key(prefix)(None)
-#             time.sleep(0.1)
+#             time.sleep(100ms)
 #         if template:
 #             start_template(template)
 #         try:
 #             # noinspection PyProtectedMember
 #             if m.phrase[0]._words:
-#                 time.sleep(0.1)
+#                 time.sleep(100ms)
 #                 formatted_text(CAMELCASE)(m)
 #         except AttributeError:
 #             pass

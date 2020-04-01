@@ -25,24 +25,24 @@ function <phrase> [over]:
             insert("func ")
             user.camelcase(phrase)
             insert("(")
-            sleep(0.1)
+            sleep(100ms)
         
 method <phrase> [over]: 
             insert("meth ")
             user.camelcase(phrase)
-            sleep(0.1)
+            sleep(100ms)
         
 state var: insert("var ")
 variable <phrase> [over]: 
             insert("var ")
             user.camelcase(phrase)
             insert(" ")
-            sleep(0.1)
+            sleep(100ms)
         
         # "set <phrase> [over]: 
         #     user.camelcase(phrase)
         #     insert(" : = ")
-        #     sleep(0.1)
+        #     sleep(100ms)
         # 
 state break: insert("break")
 state (chan | channel): insert(" chan ")
@@ -129,10 +129,10 @@ state tag:
     key("left")
 tag <phrase> [over]: 
     insert(" `")
-    sleep(0.1)
+    sleep(100ms)
     user.lowsmash(user.jargon(phrase))
     insert(' ')
-    sleep(0.1)
+    sleep(100ms)
         
 state return: insert(" return ")
 return  <phrase> [over]:
@@ -143,7 +143,7 @@ map of <phrase> [over]:
     insert("map[")
     user.camelcase(phrase)
     key("right")
-    sleep(0.1)
+    sleep(100ms)
         
 receive: insert(" <- ")
 make: insert("make(")

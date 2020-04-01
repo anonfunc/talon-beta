@@ -1,3 +1,5 @@
+import subprocess
+
 from talon import Module, app, clip, ui
 
 from typing import Callable
@@ -15,6 +17,16 @@ class Actions:
         bundle = ui.active_app().bundle
         clip.set(bundle)
         app.notify("Copied app bundle", body="{}".format(bundle))
+
+    def current_engine() -> str:
+        """Get string describing current current_engine"""
+        # noinspection PyUnresolvedReferences
+        from talon import speech_system
+        return str(speech_system.engine)
+
+    def sh(cmd: str) -> str:
+        """Run a shell command."""
+        subprocess.check_output(cmd, shell=True)
 
     def format(formatters: list, phrase: list) -> str:
         """Format phrase with formatters"""
@@ -51,3 +63,7 @@ class Actions:
     def jargon(phrase: list) -> list:
         """Replace jargon in phrase."""
         return formatting.replace_jargon(phrase)
+
+    def talon_hotkey():
+        """Toggle talon state."""
+        pass

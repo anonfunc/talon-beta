@@ -56,7 +56,7 @@ def _update_ui_scopes(event, arg):
     # print(app, window)
     if _is_real_jetbrains_editor(app, window):
         current_jetbrains = app.bundle
-        print(f"Updating jetbrains scope: {current_jetbrains}")
+        # print(f"Updating jetbrains scope: {current_jetbrains}")
     else:
         current_jetbrains = ""
     jetbrains_scope.update()
@@ -72,19 +72,13 @@ def _is_real_jetbrains_editor(app, window) -> bool:
     # XXX Window title empty in full screen.
     title = window.title
     if not title:
-        print(f"Window is Jetbrains product but not an editor: {window}")
+        # print(f"Window is Jetbrains product but not an editor: {window}")
         return False
     # print(f"{window} {app}")
     return "[" in window.title or len(window.title) == 0
 
 
 ui.register("", _update_ui_scopes)
-
-# noinspection PyUnresolvedReferences
-import os
-
-# noinspection PyUnresolvedReferences
-from talon import scope, Context
 
 
 def _send_jetbrains(bundle: str, cmd: str) -> str:
@@ -193,7 +187,7 @@ class Actions:
     def jb_cmd(commands: str):
         """Send a list of commands, split on commas"""
         global extendCommands
-        print(f"commands: {commands}")
+        # print(f"commands: {commands}")
         bundle = scope.get("user.jetbrains")
         if not bundle:
             return
@@ -244,7 +238,7 @@ class Actions:
         if not bundle:
             return
         search_string = "%5Cb" + r"%5B^-_ .()%5D*?".join(
-            start,end
+            start, end
         )  # URL escaped Java regex! '\b' 'A[%-_.()]*?Z"
         cmd = f"find {direction} {search_string}"
         _send_jetbrains(bundle, cmd)

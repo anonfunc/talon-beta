@@ -24,7 +24,7 @@ def _update_ui_scopes(event, arg):
     elif event in ("app_activate", "app_launch", "app_close"):
         extension = _extension(arg, arg.active_window)
     if extension:
-        print(f"new extension is {extension}")
+        # print(f"new extension is {extension}")
         language = extension
         language_scope.update()
 
@@ -33,6 +33,7 @@ def _extension(app, win) -> str:
     if win is None:
         return ""
     title = win.title
+    filename = ""
     if app.bundle == "com.microsoft.VSCode":
         if u"\u2014" in title:
             filename = title.split(u" \u2014 ", 1)[0]  # Unicode em dash!
@@ -60,7 +61,7 @@ def _extension(app, win) -> str:
 ui.register("", _update_ui_scopes)
 
 
-# noinspection PyMethodParameters
+# noinspection PyMethodParameters,PyMethodMayBeStatic
 @mod.action_class
 class Actions:
     def set_language(lang: str):

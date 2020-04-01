@@ -11,7 +11,7 @@ done: user.jb_cmd("action EditorCompleteStatement")
 (action | please): user.jb_cmd("action GotoAction")
 (action | please) <phrase> [over]:
         user.jb_cmd("action GotoAction")
-        sleep(0.1)
+        sleep(100ms)
         insert(phrase)
 
 toggle tools: user.jb_cmd("action HideAllWindows")
@@ -73,7 +73,7 @@ search (everywhere | all): user.jb_cmd("action SearchEverywhere")
 search (everywhere | all) <phrase> [over]: 
     user.jb_cmd("action SearchEverywhere")
     insert(phrase)
-    set_extend()
+    user.jb_set_extend("")
 
 search symbol: user.jb_cmd("action GotoSymbol")
 search symbol <phrase>: 
@@ -93,24 +93,29 @@ search file <phrase>:
     insert(phrase)
     key("enter")
 
-recent: user.jb_cmd("action RecentFiles"), set_extend()
+recent:
+    user.jb_cmd("action RecentFiles")
+    user.jb_set_extend("")
 recent <phrase> [over]: 
     user.jb_cmd("action RecentFiles")
     insert(phrase)
-    set_extend()
+    user.jb_set_extend("")
 
 search: user.jb_cmd("action Find")
 search for <phrase> [over]: 
     user.jb_cmd("action Find")
     insert(phrase)
-    set_extend("action FindNext")
+    user.jb_set_extend("action FindNext")
 
 # "go next search: user.jb_cmd("action FindNext")
 # "go last search: user.jb_cmd("action FindPrevious")
 go next result: user.jb_cmd("action FindNext")
 go last result: user.jb_cmd("action FindPrevious")
 search in path: user.jb_cmd("action FindInPath")
-search in path <phrase> [over]: user.jb_cmd("action FindInPath"), insert(phrase)
+search in path <phrase> [over]:
+    user.jb_cmd("action FindInPath")
+    insert(phrase)
+
 search this: user.jb_cmd("action FindWordAtCaret")
 # Templates: surround, generate, template.
 # "surround [this] with: user.jb_cmd("action SurroundWith")
@@ -119,16 +124,16 @@ surround [this] with <phrase> [over]:
     insert(phrase)
 
 # Making these longer to reduce collisions with real code dictation.
-insert generated <phrase> [over]: user.jb_cmd("action Generate"), insert(phrase)
+insert generated <phrase> [over]:
+    user.jb_cmd("action Generate")
+    insert(phrase)
 insert template <phrase> [over]: 
     user.jb_cmd("action InsertLiveTemplate")
     insert(phrase)
 
 create template: user.jb_cmd("action SaveAsTemplate")
 # Lines / Selections
-clear line contents: user.jb_cmd(
-    "action EditorLineEnd", "action EditorDeleteToLineStart"
-)
+clear line contents: user.jb_cmd("action EditorLineEnd,action EditorDeleteToLineStart")
 # XXX Replaced with way left/right
 # "clear line end: user.jb_cmd("action EditorDeleteToLineEnd")
 # "clear line start: user.jb_cmd("action EditorDeleteToLineStart")
@@ -195,7 +200,10 @@ create sibling <phrase> [over]:
     insert(phrase)
 
 create file: user.jb_cmd("action NewElement")
-create file <phrase> [over]: user.jb_cmd("action NewElement"), insert(phrase)
+create file <phrase> [over]:
+    user.jb_cmd("action NewElement")
+    insert(phrase)
+
 # Task Management
 go task: user.jb_cmd("action tasks.goto")
 go browser task: user.jb_cmd("action tasks.open.in.browser")
@@ -270,8 +278,9 @@ go final tab: user.jb_cmd("action GoToLastTab")
 clear tab: user.jb_cmd("action CloseActiveTab")
 # Quick popups
 change scheme: user.jb_cmd("action QuickChangeScheme")
-toggle (doc | documentation): user.jb_cmd("action QuickJavaDoc"),  # Always javadoc
-pop (doc | documentation): user.jb_cmd("action QuickJavaDoc"),  # Always javadoc
+# Always javadoc
+toggle (doc | documentation): user.jb_cmd("action QuickJavaDoc")
+pop (doc | documentation): user.jb_cmd("action QuickJavaDoc")
 (pop deaf | toggle definition): user.jb_cmd("action QuickImplementations")
 pop type: user.jb_cmd("action ExpressionTypeInfo")
 pop parameters: user.jb_cmd("action ParameterInfo")
@@ -344,7 +353,7 @@ key(cmd-shift-ctrl-alt-f): app.notify(user.current_jetbrains())
     user.jb_cmd("{jb_selection},range {number_1} {number_2}")
 
 <user.jb_selection> until line <number>:
-    user.jb_cmd("{jb_selection}, extend {number}")
+    user.jb_cmd("{jb_selection},extend {number}")
 
 # Structure
 <user.jb_selection> [<user.ordinal>] <user.jb_psi>:
@@ -375,7 +384,7 @@ key(cmd-shift-ctrl-alt-f): app.notify(user.current_jetbrains())
     user.jb_cmd("action EditorRight")
 
 <user.jb_movement> next <phrase> [over]:
-user.jb_cmd(jb_movement)
+    user.jb_cmd(jb_movement)
     user.jb_close_search("next", phrase)
     user.jb_cmd("action EditorRight")
 
@@ -394,7 +403,7 @@ user.jb_cmd(jb_movement)
 # This will put the cursor past the indentation
 <user.jb_movement> line <number>:
     user.jb_cmd("{jb_movement},goto {number} 9999,action EditorLineEnd,action EditorLineStart")
-    user.jb_extend("")
+    user.jb_set_extend("")
 
 # Structural
 <user.jb_movement> start [<user.ordinal>] <user.jb_psi>:
