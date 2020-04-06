@@ -97,9 +97,9 @@ def _send_jetbrains(bundle: str, cmd: str) -> str:
 
 def _get_nonce(port):
     try:
-        with open(os.path.join("/tmp", "vcidea_" + str(port)), "r") as fh:
+        with open(os.path.join(os.path.expanduser("~"), ".vcidea_" + str(port)), "r") as fh:
             return fh.read()
-        # XXX Homedir for IDE plugin changes on windows
+
     except IOError:
         return None
 
