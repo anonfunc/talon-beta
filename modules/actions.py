@@ -1,6 +1,6 @@
 import subprocess
 
-from talon import Module, app, clip, ui
+from talon import Module, app, clip, ui, applescript
 
 from typing import Callable
 
@@ -67,3 +67,7 @@ class Actions:
     def talon_hotkey():
         """Toggle talon state."""
         pass
+
+    def applescript(script: str) -> str:
+        """Run applescript"""
+        return applescript.run(script)
