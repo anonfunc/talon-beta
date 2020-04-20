@@ -4,9 +4,11 @@ from talon import Module, app, clip, ui, applescript
 
 from typing import Callable
 
+from . import mic
 from .. import formatting
-
 mod = Module()
+
+mic_state = True
 
 
 # noinspection PyMethodParameters,PyMethodMayBeStatic
@@ -66,7 +68,11 @@ class Actions:
 
     def talon_hotkey():
         """Toggle talon state."""
-        pass
+        current = mic.get_input_volume()
+        if current:
+            mic.set_input_volume(0)
+        else:
+            mic.auto_mic_volume()
 
     def applescript(script: str) -> str:
         """Run applescript"""

@@ -50,7 +50,7 @@ triple tick: insert("'''")
 triple quote: insert('"""')
 # Swipe moved to language.py XXX
 item: insert(", ")
-value: insert(": ")
+# value: insert(": ")
 # space: " ",  # basic_keys.py
 (args | arguments):
     insert("()")

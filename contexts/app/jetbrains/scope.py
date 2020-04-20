@@ -74,8 +74,10 @@ def _is_real_jetbrains_editor(app, window) -> bool:
     if not title:
         # print(f"Window is Jetbrains product but not an editor: {window}")
         return False
-    # print(f"{window} {app}")
-    return "[" in window.title or len(window.title) == 0
+
+    t = " – " in window.title or "[" in window.title or len(window.title) == 0
+    # print(f"{window} {app} {t}")
+    return t
 
 
 ui.register("", _update_ui_scopes)

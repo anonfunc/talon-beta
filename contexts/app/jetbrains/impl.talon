@@ -399,7 +399,7 @@ key(cmd-shift-ctrl-alt-f): app.notify(user.current_jetbrains())
     user.jb_cmd("action EditorRight")
 
 <user.jb_movement> line start <number>: user.jb_cmd("{jb_movement},goto {number} 0")
-<user.jb_movement> line end <number>: user.jb_cmd("{jb_movement},goto {number} 9999")
+<user.jb_movement> line ending <number>: user.jb_cmd("{jb_movement},goto {number} 9999")
 # This will put the cursor past the indentation
 <user.jb_movement> line <number>:
     user.jb_cmd("{jb_movement},goto {number} 9999,action EditorLineEnd,action EditorLineStart")
