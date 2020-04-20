@@ -336,73 +336,73 @@ key(cmd-shift-ctrl-alt-f): app.notify(user.current_jetbrains())
     user.jb_bounded_search("next", alphabet_1, alphabet_2)
 
 <user.jb_selection> line:
-    user.jb_cmd("{jb_selection},action EditorLineStart,action EditorLineEndWithSelection")
+    user.jb_cmd("action EditorLineStart,action EditorLineEndWithSelection,{jb_selection}")
     user.jb_set_extend("action EditorLineStart,action EditorLineStart,action EditorLineEndWithSelection")
 
 <user.jb_selection> line <number>:
-    user.jb_cmd("{jb_selection},goto {number} 0,action EditorLineStart,action EditorLineEndWithSelection")
+    user.jb_cmd("goto {number} 0,action EditorLineStart,action EditorLineEndWithSelection,{jb_selection}")
     user.jb_set_extend("action EditorLineStart,action EditorLineStart,action EditorLineEndWithSelection")
 
 <user.jb_selection> whole line:
-    user.jb_cmd("{jb_selection},action EditorSelectLine")
+    user.jb_cmd("action EditorSelectLine,{jb_selection}")
 
 <user.jb_selection> whole line <number>:
-    user.jb_cmd("{jb_selection},goto {number} 0,action EditorSelectLine")
+    user.jb_cmd("goto {number} 0,action EditorSelectLine,{jb_selection}")
 
 <user.jb_selection> lines <number> until <number>:
-    user.jb_cmd("{jb_selection},range {number_1} {number_2}")
+    user.jb_cmd("range {number_1} {number_2},{jb_selection}")
 
 <user.jb_selection> until line <number>:
-    user.jb_cmd("{jb_selection},extend {number}")
+    user.jb_cmd("extend {number},{jb_selection}")
 
 # Structure
 <user.jb_selection> [<user.ordinal>] <user.jb_psi>:
     user.jb_psi(jb_psi, "select", ordinal)
 
 # Generic Editor
-<user.jb_selection> all: user.jb_cmd("{jb_selection},action $SelectAll")
-<user.jb_selection> left: user.jb_cmd("{jb_selection},action EditorLeftWithSelection")
-<user.jb_selection> right: user.jb_cmd("{jb_selection},action EditorRightWithSelection")
-<user.jb_selection> up: user.jb_cmd("{jb_selection},action EditorUpWithSelection")
-<user.jb_selection> down: user.jb_cmd("{jb_selection},action EditorDownWithSelection")
-<user.jb_selection> word left: user.jb_cmd("{jb_selection},action EditorPreviousWordWithSelection")
-<user.jb_selection> word right: user.jb_cmd("{jb_selection},action EditorNextWordWithSelection")
-<user.jb_selection> camel left: user.jb_cmd("{jb_selection},action EditorPreviousWordInDifferentHumpsModeWithSelection")
-<user.jb_selection> camel right: user.jb_cmd("{jb_selection},action EditorNextWordInDifferentHumpsModeWithSelection")
-<user.jb_selection> way left: user.jb_cmd("{jb_selection},action EditorLineStartWithSelection")
-<user.jb_selection> way right: user.jb_cmd("{jb_selection},action EditorLineEndWithSelection")
-<user.jb_selection> way up: user.jb_cmd("{jb_selection},action EditorTextStartWithSelection")
-<user.jb_selection> way down: user.jb_cmd("{jb_selection},action EditorTextEndWithSelection")
+<user.jb_selection> all: user.jb_cmd("action $SelectAll,{jb_selection}")
+<user.jb_selection> left: user.jb_cmd("action EditorLeftWithSelection,{jb_selection}")
+<user.jb_selection> right: user.jb_cmd("action EditorRightWithSelection,{jb_selection}")
+<user.jb_selection> up: user.jb_cmd("action EditorUpWithSelection,{jb_selection}")
+<user.jb_selection> down: user.jb_cmd("action EditorDownWithSelection,{jb_selection}")
+<user.jb_selection> word left: user.jb_cmd("action EditorPreviousWordWithSelection,{jb_selection}")
+<user.jb_selection> word right: user.jb_cmd("action EditorNextWordWithSelection,{jb_selection}")
+<user.jb_selection> camel left: user.jb_cmd("action EditorPreviousWordInDifferentHumpsModeWithSelection,{jb_selection}")
+<user.jb_selection> camel right: user.jb_cmd("action EditorNextWordInDifferentHumpsModeWithSelection,{jb_selection}")
+<user.jb_selection> way left: user.jb_cmd("action EditorLineStartWithSelection,{jb_selection}")
+<user.jb_selection> way right: user.jb_cmd("action EditorLineEndWithSelection,{jb_selection}")
+<user.jb_selection> way up: user.jb_cmd("action EditorTextStartWithSelection,{jb_selection}")
+<user.jb_selection> way down: user.jb_cmd("action EditorTextEndWithSelection,{jb_selection}")
 
 ### Movement ###
 
-<user.jb_movement> next (error | air): user.jb_cmd("{jb_movement},action GotoNextError")
-<user.jb_movement> last (error | air): user.jb_cmd("{jb_movement},action GotoPreviousError")
+<user.jb_movement> next (error | air): user.jb_cmd("action GotoNextError,{jb_movement}")
+<user.jb_movement> last (error | air): user.jb_cmd("action GotoPreviousError,{jb_movement}")
 <user.jb_movement> last <phrase> [over]:
-    user.jb_cmd(jb_movement)
     user.jb_close_search("last", phrase)
     user.jb_cmd("action EditorRight")
+    user.jb_cmd(jb_movement)
 
 <user.jb_movement> next <phrase> [over]:
-    user.jb_cmd(jb_movement)
     user.jb_close_search("next", phrase)
     user.jb_cmd("action EditorRight")
+    user.jb_cmd(jb_movement)
 
 <user.jb_movement> last bounded <text.alphabet> <text.alphabet>:
-    user.jb_cmd(jb_movement)
     user.jb_bounded_search("last", alphabet_1, alphabet_2)
     user.jb_cmd("action EditorRight")
+    user.jb_cmd(jb_movement)
 
 <user.jb_movement> next bounded <text.alphabet> <text.alphabet>:
-    user.jb_cmd(jb_movement)
     user.jb_bounded_search("last", alphabet_1, alphabet_2)
     user.jb_cmd("action EditorRight")
+    user.jb_cmd(jb_movement)
 
-<user.jb_movement> line start <number>: user.jb_cmd("{jb_movement},goto {number} 0")
-<user.jb_movement> line ending <number>: user.jb_cmd("{jb_movement},goto {number} 9999")
+<user.jb_movement> line start <number>: user.jb_cmd("goto {number} 0,{jb_movement}")
+<user.jb_movement> line ending <number>: user.jb_cmd("goto {number} 9999,{jb_movement}")
 # This will put the cursor past the indentation
 <user.jb_movement> line <number>:
-    user.jb_cmd("{jb_movement},goto {number} 9999,action EditorLineEnd,action EditorLineStart")
+    user.jb_cmd("goto {number} 9999,action EditorLineEnd,action EditorLineStart,{jb_movement}")
     user.jb_set_extend("")
 
 # Structural
