@@ -13,28 +13,28 @@
 # Get active app's file path
 # XXX : app.path() -> str
 # Open app preferences
-open preferences: app.preferences()
+^open preferences: app.preferences()
 # Close the current tab
-clear tab: app.tab_close()
+^clear tab: app.tab_close()
 # Move the current tab to a new window
-detach tab: app.tab_detach()
+^detach tab: app.tab_detach()
 # Switch to next tab for this window
-go next tab: app.tab_next()
+^go next tab: app.tab_next()
 # Open a new tab
-create tab: app.tab_open()
+^create tab: app.tab_open()
 # Switch to previous tab for this window
-go last tab: app.tab_previous()
+^go last tab: app.tab_previous()
 # Re-open the last-closed tab
-undo tab close: app.tab_reopen()
+^undo tab close: app.tab_reopen()
 # Close the current window
-clear window: app.window_close()
+^clear window: app.window_close()
 # Hide the current window
-hide window: app.window_hide()
+^hide window: app.window_hide()
 # Hide all other windows
-hide other windows: app.window_hide_others()
+^hide other windows: app.window_hide_others()
 # Switch to next window for this app
-go next window: app.window_next()
+^go next window: app.window_next()
 # Open a new window
-create window: app.window_open()
+^create window: app.window_open()
 # Switch to previous window for this app
-go last window: app.window_previous()
+^go last window: app.window_previous()

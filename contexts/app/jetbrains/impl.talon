@@ -356,8 +356,11 @@ key(cmd-shift-ctrl-alt-f): app.notify(user.current_jetbrains())
     user.jb_cmd("extend {number},{jb_selection}")
 
 # Structure
-<user.jb_selection> [<user.ordinal>] <user.jb_psi>:
+<user.jb_selection> <user.ordinal> <user.jb_psi>:
     user.jb_psi(jb_psi, "select", ordinal)
+
+<user.jb_selection> <user.jb_psi>:
+    user.jb_psi(jb_psi, "select", "")
 
 # Generic Editor
 <user.jb_selection> all: user.jb_cmd("action $SelectAll,{jb_selection}")
@@ -406,11 +409,16 @@ key(cmd-shift-ctrl-alt-f): app.notify(user.current_jetbrains())
     user.jb_set_extend("")
 
 # Structural
-<user.jb_movement> start [<user.ordinal>] <user.jb_psi>:
+<user.jb_movement> start <user.ordinal> <user.jb_psi>:
     user.jb_psi(jb_psi, "start", ordinal)
+<user.jb_movement> start <user.jb_psi>:
+    user.jb_psi(jb_psi, "start", "")
 
-<user.jb_movement> [end] [<user.ordinal>] <user.jb_psi>:
+# Can't make ordinal optional with [] or I get a name error
+<user.jb_movement> [end] <user.ordinal> <user.jb_psi>:
     user.jb_psi(jb_psi, "end", ordinal)
+<user.jb_movement> [end] <user.jb_psi>:
+    user.jb_psi(jb_psi, "end", "")
 
 
 # Generic

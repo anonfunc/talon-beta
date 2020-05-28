@@ -1,2 +1,2 @@
 
-clear language context: user.set_language("unknown")
+^clear language context$: user.set_language("unknown")

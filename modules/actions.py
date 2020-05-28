@@ -6,6 +6,7 @@ from typing import Callable
 
 from . import mic
 from .. import formatting
+
 mod = Module()
 
 mic_state = True
@@ -25,6 +26,10 @@ class Actions:
         # noinspection PyUnresolvedReferences
         from talon import speech_system
         return str(speech_system.engine)
+
+    def int(s: str) -> int:
+        """Str to int"""
+        return int(s)
 
     def sh(cmd: str) -> str:
         """Run a shell command."""

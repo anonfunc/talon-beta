@@ -41,14 +41,14 @@ def jetbrains_scope():
 def _update_ui_scopes(event, arg):
     global current_jetbrains
 
-    if event in ('win_open', 'win_closed') and arg.app.bundle not in port_mapping.keys():
+    if str(event).startswith('win_') and arg.app.bundle not in port_mapping.keys():
         return
-    elif event in ("app_activate", "app_launch", "app_close") and arg.bundle not in port_mapping.keys():
+    elif str(event).startswith('app_') and arg.bundle not in port_mapping.keys():
         return
 
-    if event in ('win_open', 'win_closed'):
+    if str(event).startswith('win_'):
         app, window = arg.app, arg
-    elif event in ("app_activate", "app_launch", "app_close"):
+    elif str(event).startswith('app_'):
         app, window = arg, arg.active_window
     else:
         return

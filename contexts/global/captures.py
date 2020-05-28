@@ -24,8 +24,8 @@ def text_alphabet(m) -> str:
 
 
 @ctx.capture(path="digits", rule=wrapper.as_rule(numbers.digits_map))
-def digits(m) -> int:
-    return int("".join([str(numbers.digits_map[n]) for n in m]))
+def digits(m) -> str:
+    return "".join([str(numbers.digits_map[n]) for n in m])
 
 
 @ctx.capture(path="number_small", rule=wrapper.as_rule(numbers.small_numeral_map))

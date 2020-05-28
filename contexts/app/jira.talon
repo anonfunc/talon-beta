@@ -2,34 +2,34 @@ app: org.mozilla.firefox
 title: / JIRA2/
 -
 
-go dashboard:
+^go dashboard:
     key("g d")
-go boards:
+^go boards:
     key("g a")
-go issues:
+^go issues:
     key("g i")
-search:
+^search:
     key("/")
-go create:
+^go create:
     key("c")
-assign [to] <phrase> [over]:
+^assign [to] <phrase> [over]:
     key("a")
     sleep(600ms)
     insert(phrase)
     
-assign to me:
+^assign to me:
     key("i")
-comment:
+^comment:
     key("m")
-edit:
+^edit:
     key("e")
 ^(action | please) [<phrase>] [over]$:
     key(".")
     sleep(600ms)
     insert(phrase)
-submit:
+^submit:
     key("ctrl+return")
-copy link:
+^copy link:
     key("cmd+l cmd+c")
-copy id:
+^copy id:
     key("cmd+l right alt+shift+left alt+shift+left cmd+c")
